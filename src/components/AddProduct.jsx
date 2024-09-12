@@ -81,7 +81,7 @@ const AddProduct = () => {
         </DrawerHeader>
 
         <DrawerBody overflow="visible">
-          <Tag colorScheme='green' size='sm' mb={4}>{activeProduct.brand}</Tag>
+          {activeProduct.brand && <Tag colorScheme='green' size='sm' mb={4}>{activeProduct.brand}</Tag>}
           <Text color='blackAlpha.800'> {activeProduct.description} </Text>
 
           <HStack mt={10} mb={3} justifyContent="space-between">

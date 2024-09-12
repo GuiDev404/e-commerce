@@ -1,5 +1,9 @@
 import * as yup from 'yup';
 
+export const defaultCategories = [
+  { slug: 'all', name: 'All' },
+  { slug: 'games', name: 'Games' }
+]
 
 export const queryClientConfig =  {
   defaultOptions: {

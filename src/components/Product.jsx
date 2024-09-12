@@ -6,6 +6,7 @@ import React from 'react'
 const Product = ({ thumbnail, images, category, title, description, price, discountPercentage, brand, id }) => {
   const setActiveProduct = useCarrito(state=> state.setActiveProduct);
 
+  console.log(category);
   const handleSetActiveProduct = ()=> {
     setActiveProduct({ 
       thumbnail, images, category, title, description, price, discountPercentage, brand, id

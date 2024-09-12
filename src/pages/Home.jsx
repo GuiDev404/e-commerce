@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Select, Spinner } from '@chakra-ui/react';
+import { Box, FormLabel, Select, Spinner } from '@chakra-ui/react';
 
 import ListOfProducts from '../components/ListOfProducts';
 import AddProduct from '../components/AddProduct';
@@ -9,6 +9,7 @@ import Header from '../components/Header';
 
 import { getCategories, getProducts } from '../services';
 import { Cat } from 'react-kawaii';
+import { defaultCategories } from '../config/const';
 
 const Home = () => {
   const [categorySelected, setCategorySelected] = useState('all');
@@ -29,23 +30,25 @@ const Home = () => {
       <AddProduct />
 
       <Header title='Productos disponibles'>
+        <Box display='flex' alignItems='center'>
+        <FormLabel minWidth='75px' mb={0} htmlFor='filter'>
+          Filtrar por
+        </FormLabel>
         <Select
-          width={{ base: '100%', md: '25%', sm: '40%' }}
-          defaultValue='placeholder'
-          disabled={loadingCategories}
-          onChange={handleChangeCategory}
-        >
-          <option value='placeholder' hidden>
-            {' '}
-            Seleccionar categoria{' '}
-          </option>
-          {['all', ...categories, 'games'].map((category) => (
-            <option key={category} value={category}>
-              {' '}
-              {category}{' '}
-            </option>
-          ))}
-        </Select>
+            // width={{ base: '100%', md: '25%', sm: '40%' }}
+            defaultValue='placeholder'
+            disabled={loadingCategories}
+            onChange={handleChangeCategory}
+            id='filter'
+          >
+            {[defaultCategories[0], ...categories, defaultCategories[1]].map((category) => (
+              <option key={category.slug} value={category.slug}>
+                {' '}
+                {category.name}{' '}
+              </option>
+            ))}
+          </Select>
+        </Box>
       </Header>
 
       {loadingProducts ? (
